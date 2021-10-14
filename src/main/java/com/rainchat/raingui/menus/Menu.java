@@ -66,26 +66,6 @@ public abstract class Menu implements InventoryHolder {
         return this.clickableItems.getOrDefault(slot, null);
     }
 
-
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getClick().equals(ClickType.UNKNOWN) || event.getClickedInventory() == null) {
-            event.setCancelled(true);
-            return;
-        }
-
-        if (event.getWhoClicked() instanceof Player) {
-            Player player = (Player) event.getWhoClicked();
-
-            if (event.getClickedInventory() == null) return;
-            if (!event.getClickedInventory().equals(getInventory())) return;
-            event.setCancelled(true);
-            MenuItem menuItem = getItem(event.getSlot());
-            menuItem.getInventoryClickEvent().accept(event);
-            inventory.clear();
-        }
-    }
-
     @Override
     public Inventory getInventory() {
         return inventory;
