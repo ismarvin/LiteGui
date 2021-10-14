@@ -1,0 +1,5 @@
+name: RGui
+version: ${project.version}
+main: com.rainchat.raingui.RGui
+api-version: 1.17
+authors: [ rain_chat ]
