@@ -24,13 +24,12 @@ public abstract class Menu implements InventoryHolder {
 
     private final InventoryManager inventoryManager;
     private final Inventory inventory;
-    private final List<MenuItem> itemList;
-    private final HashMap<Integer, MenuItem> clickableItems = new HashMap<>();
+    private HashMap<Integer, MenuItem> clickableItems = new HashMap<>();
 
     public Menu(RGui rGui, String name, int size) {
         this.inventoryManager = rGui.getInventoryManager();
         this.inventory = Bukkit.createInventory(this, size * 9, name);
-        this.itemList = new ArrayList<>();
+        this.clickableItems = new HashMap<>();
     }
 
     public void open(Player player) {

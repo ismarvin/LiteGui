@@ -12,12 +12,12 @@ public abstract class PaginationMenu extends Menu {
 
     private int page;
     private List<Integer> itemSlots;
-    private List<MenuItem> clickableItems;
+    private List<MenuItem> paginationItems;
 
     public PaginationMenu(RGui rGui, String name, int size) {
         super(rGui, name, size);
         this.page = 0;
-        this.clickableItems = new ArrayList<>();
+        this.paginationItems = new ArrayList<>();
         this.itemSlots = new ArrayList<>();
     }
 
@@ -47,8 +47,8 @@ public abstract class PaginationMenu extends Menu {
     }
 
 
-    public List<MenuItem> getClickableItems() {
-        return this.clickableItems;
+    public List<MenuItem> getPaginationItems() {
+        return this.paginationItems;
     }
 
 
@@ -57,12 +57,12 @@ public abstract class PaginationMenu extends Menu {
     }
 
     public int getLastPage() {
-        int m = (int) Math.ceil((double) getClickableItems().size() / getItemSlots().size()) - 1;
+        int m = (int) Math.ceil((double) getPaginationItems().size() / getItemSlots().size()) - 1;
         return m != -1 ? m : 0;
     }
 
     public void setPage(int page) {
-        if (this.clickableItems.size() == 0) return;
+        if (this.paginationItems.size() == 0) return;
         else if (this.itemSlots.size() == 0) return;
 
         int oldPage = this.page;
@@ -85,7 +85,7 @@ public abstract class PaginationMenu extends Menu {
     }
 
     public void setItems(List<MenuItem> clickableItems) {
-        this.clickableItems = clickableItems;
+        this.paginationItems = clickableItems;
         this.updateInventory();
     }
 
@@ -98,7 +98,7 @@ public abstract class PaginationMenu extends Menu {
     }
 
     private boolean updateInventory() {
-        int clickableItemSize = this.clickableItems.size();
+        int clickableItemSize = this.paginationItems.size();
         int itemSlotSize = this.itemSlots.size();
 
         int first = this.page * itemSlotSize;
@@ -108,7 +108,7 @@ public abstract class PaginationMenu extends Menu {
 
         int m = 0;
         for (; first < last; first++) {
-            MenuItem clickableItem = (clickableItemSize > first) ? this.clickableItems.get(first) : new MenuItem(new ItemStack(Material.AIR),inventoryClickEvent -> {});
+            MenuItem clickableItem = (clickableItemSize > first) ? this.paginationItems.get(first) : new MenuItem(new ItemStack(Material.AIR),inventoryClickEvent -> {});
             this.setItem(this.itemSlots.get(m), clickableItem);
             m++;
         }
