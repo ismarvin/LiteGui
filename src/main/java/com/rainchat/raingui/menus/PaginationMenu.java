@@ -14,7 +14,7 @@ public abstract class PaginationMenu extends Menu {
     private List<Integer> itemSlots;
     private List<MenuItem> clickableItems;
 
-    PaginationMenu(RGui rGui, String name, int size) {
+    public PaginationMenu(RGui rGui, String name, int size) {
         super(rGui, name, size);
         this.page = 0;
         this.clickableItems = new ArrayList<>();
