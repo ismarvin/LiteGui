@@ -1,4 +1,4 @@
-package com.rainchat.raingui.utils;
+package com.rainchat.raingui.utils.chat;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -58,6 +58,8 @@ public class Color {
 
         return color;
     }
+
+
 
     public static String parseHexString(String text) {
         return parseHexString(text, Color.HEX_PATTERN);

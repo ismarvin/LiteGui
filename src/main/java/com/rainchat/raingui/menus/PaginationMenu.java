@@ -1,21 +1,20 @@
 package com.rainchat.raingui.menus;
 
-import com.rainchat.raingui.RGui;
+import com.rainchat.raingui.utils.general.Item;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class PaginationMenu extends Menu {
+public abstract class PaginationMenu extends LiteMenu {
 
     private int page;
     private List<Integer> itemSlots;
-    private List<MenuItem> paginationItems;
+    private List<ClickItem> paginationItems;
 
-    public PaginationMenu(RGui rGui, String name, int size) {
-        super(rGui, name, size);
+    public PaginationMenu(Plugin plugin, String name, int size) {
+        super(plugin, name, size);
         this.page = 0;
         this.paginationItems = new ArrayList<>();
         this.itemSlots = new ArrayList<>();
@@ -47,7 +46,7 @@ public abstract class PaginationMenu extends Menu {
     }
 
 
-    public List<MenuItem> getPaginationItems() {
+    public List<ClickItem> getPaginationItems() {
         return this.paginationItems;
     }
 
@@ -76,7 +75,7 @@ public abstract class PaginationMenu extends Menu {
     }
 
     @Override
-    public void guiFill(MenuItem clickableItem) {
+    public void guiFill(ClickItem clickableItem) {
         for (int slot = 0; slot < getInventory().getSize(); slot++) {
             if (itemSlots.contains(slot)) continue;
             if (getItem(slot) != null) continue;
@@ -84,7 +83,7 @@ public abstract class PaginationMenu extends Menu {
         }
     }
 
-    public void setItems(List<MenuItem> clickableItems) {
+    public void setItems(List<ClickItem> clickableItems) {
         this.paginationItems = clickableItems;
         this.updateInventory();
     }
@@ -108,7 +107,7 @@ public abstract class PaginationMenu extends Menu {
 
         int m = 0;
         for (; first < last; first++) {
-            MenuItem clickableItem = (clickableItemSize > first) ? this.paginationItems.get(first) : new MenuItem(new ItemStack(Material.AIR),inventoryClickEvent -> {});
+            ClickItem clickableItem = (clickableItemSize > first) ? this.paginationItems.get(first) : new ClickItem(new Item().material(Material.AIR), inventoryClickEvent -> {});
             this.setItem(this.itemSlots.get(m), clickableItem);
             m++;
         }

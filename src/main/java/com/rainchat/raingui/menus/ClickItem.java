@@ -1,25 +1,26 @@
 package com.rainchat.raingui.menus;
 
+import com.rainchat.raingui.utils.general.Item;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.function.Consumer;
 
-public class MenuItem {
+public class ClickItem {
 
 
-    private final ItemStack itemStack;
+    private final Item item;
     private final Consumer<InventoryClickEvent> inventoryClickEvent;
 
-    public MenuItem(ItemStack itemStack, Consumer<InventoryClickEvent> inventoryClickEvent) {
-        this.itemStack = itemStack;
+    public ClickItem(Item item, Consumer<InventoryClickEvent> inventoryClickEvent) {
+        this.item = item;
         this.inventoryClickEvent = inventoryClickEvent;
     }
 
 
 
     public ItemStack getItemStack() {
-        return itemStack;
+        return item.build();
     }
 
     public Consumer<InventoryClickEvent> getInventoryClickEvent() {
