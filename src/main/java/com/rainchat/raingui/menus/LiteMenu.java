@@ -18,7 +18,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-public abstract class LiteMenu implements InventoryHolder, Listener {
+public class LiteMenu implements InventoryHolder, Listener {
 
     private Inventory inventory;
     private HashMap<Integer, ClickItem> clickableItems = new HashMap<>();

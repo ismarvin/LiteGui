@@ -7,7 +7,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class PaginationMenu extends LiteMenu {
+public class PaginationMenu extends LiteMenu {
 
     private int page;
     private List<Integer> itemSlots;
