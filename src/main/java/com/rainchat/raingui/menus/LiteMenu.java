@@ -14,6 +14,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
@@ -21,9 +22,11 @@ import java.util.function.Consumer;
 public class LiteMenu implements InventoryHolder, Listener {
 
     private Inventory inventory;
+
     private HashMap<Integer, ClickItem> clickableItems = new HashMap<>();
     protected int guiSize;
     private PlaceholderSupply[] globalReplacers;
+    private BukkitTask update;
 
     public LiteMenu(Plugin plugin, String name, int size) {
         this.inventory = Bukkit.createInventory(this, size * 9, name);
@@ -69,6 +72,13 @@ public class LiteMenu implements InventoryHolder, Listener {
         return this.clickableItems.getOrDefault(slot, null);
     }
 
+    public void startUpdate(BukkitTask task) {
+        if (update != null) {
+            update.cancel();
+        }
+        this.update = task;
+    }
+
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         if (event.getClick().equals(ClickType.UNKNOWN) || event.getClickedInventory() == null) {
@@ -96,6 +106,7 @@ public class LiteMenu implements InventoryHolder, Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         if (event.getInventory().equals(getInventory())) {
+            update.cancel();
             HandlerList.unregisterAll(this);
         }
     }
