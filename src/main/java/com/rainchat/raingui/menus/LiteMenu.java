@@ -106,7 +106,9 @@ public class LiteMenu implements InventoryHolder, Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         if (event.getInventory().equals(getInventory())) {
-            update.cancel();
+            if (update != null) {
+                update.cancel();
+            }
             HandlerList.unregisterAll(this);
         }
     }
