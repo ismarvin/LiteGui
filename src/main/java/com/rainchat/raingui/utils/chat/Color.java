@@ -19,6 +19,8 @@ public class Color {
     }
 
     public static String parseHexString(String text, Pattern hexPattern) {
+        if (text.isEmpty()) return org.bukkit.ChatColor.translateAlternateColorCodes('&', text);
+
         Matcher hexColorMatcher = hexPattern.matcher(text);
 
         if (serverSupportsHex()) {
