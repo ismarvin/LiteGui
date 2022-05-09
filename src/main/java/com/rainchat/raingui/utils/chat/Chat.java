@@ -17,7 +17,6 @@ public class Chat {
         Matcher m = PH_KEY.matcher(template);
 
         while (m.find()) {
-
             if (replacementSource == null)   break;
 
             for (PlaceholderSupply<?> e : replacementSource) {
@@ -29,9 +28,7 @@ public class Chat {
                     template = template.replace(m.group(), replacement);
                     break;
                 }
-
             }
-
         }
 
         return Color.parseHexString(template);
