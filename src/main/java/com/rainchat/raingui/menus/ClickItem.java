@@ -10,14 +10,16 @@ public class ClickItem {
 
 
     private final Item item;
-    private final Consumer<InventoryClickEvent> inventoryClickEvent;
+    private Consumer<InventoryClickEvent> inventoryClickEvent;
 
     public ClickItem(Item item, Consumer<InventoryClickEvent> inventoryClickEvent) {
         this.item = item;
         this.inventoryClickEvent = inventoryClickEvent;
     }
 
-
+    public void setInventoryClickEvent(Consumer<InventoryClickEvent> inventoryClickEvent) {
+        this.inventoryClickEvent = inventoryClickEvent;
+    }
 
     public ItemStack getItemStack() {
         return item.build();
