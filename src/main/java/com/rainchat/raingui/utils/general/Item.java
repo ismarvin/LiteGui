@@ -117,7 +117,7 @@ public class Item {
         if (skull_texture != null) {
             itemStack = skullTextured(skull_texture);
         } else {
-            itemStack = new ItemStack(Material.valueOf(Chat.translateRaw(material, replacementSource)));
+            itemStack = new ItemStack(Material.valueOf(Chat.translateRaw(material, replacementSource).toUpperCase()));
         }
 
         ItemMeta itemMeta = itemStack.getItemMeta();
