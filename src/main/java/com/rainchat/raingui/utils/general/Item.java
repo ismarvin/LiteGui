@@ -112,6 +112,14 @@ public class Item {
     public ItemStack build() {
         if (material == null) return null;
         ItemStack itemStack;
+
+        if (material.startsWith("material:")) {
+            material.replace("material:","");
+        } else {
+            skull_texture = material.replace("base64:","");
+        }
+
+
         if (skull_texture != null) {
             itemStack = skullTextured(skull_texture);
         } else {
