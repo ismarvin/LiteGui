@@ -112,6 +112,7 @@ public class Item {
     }
 
     public ItemStack build() {
+        if (skull_texture.isEmpty()) return skullTextured(skull_texture);
         if (material == null) return null;
         ItemStack itemStack;
         if (skull_texture != null) {
