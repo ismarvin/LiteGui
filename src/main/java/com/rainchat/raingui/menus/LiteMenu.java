@@ -60,7 +60,7 @@ public class LiteMenu implements InventoryHolder, Listener {
 
     public void setItem(int slot, ClickItem clickableItem) {
         if (clickableItem.getItemStack() == null || clickableItem.getItemStack().getType().equals(Material.AIR)) {
-            this.clickableItems.put(slot, new ClickItem(new Item().material(Material.AIR), inventoryClickEvent -> {}));
+            this.clickableItems.put(slot, new ClickItem(new Item().material(Material.AIR.toString()), inventoryClickEvent -> {}));
             this.inventory.setItem(slot, clickableItem.getItemStack());
             return;
         }

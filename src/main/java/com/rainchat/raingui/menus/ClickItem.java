@@ -17,6 +17,10 @@ public class ClickItem {
         this.inventoryClickEvent = inventoryClickEvent;
     }
 
+    public static ClickItem empty(Item item) {
+        return new ClickItem(item, inventoryClickEvent1 -> {});
+    }
+
     public void setInventoryClickEvent(Consumer<InventoryClickEvent> inventoryClickEvent) {
         this.inventoryClickEvent = inventoryClickEvent;
     }

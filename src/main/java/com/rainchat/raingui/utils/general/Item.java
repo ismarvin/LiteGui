@@ -21,7 +21,7 @@ public class Item {
 
     private String name;
     private String skull_texture;
-    private Material material;
+    private String material;
     private short durability;
     private String[] lore;
     private int custom_model = -1;
@@ -37,7 +37,7 @@ public class Item {
         return lore;
     }
 
-    public Material getMaterial() {
+    public String getMaterial() {
         return material;
     }
 
@@ -46,7 +46,7 @@ public class Item {
         return this;
     }
 
-    public Item material(Material material) {
+    public Item material(String material) {
         this.material = material;
         return this;
     }
@@ -117,7 +117,7 @@ public class Item {
         if (skull_texture != null) {
             itemStack = skullTextured(skull_texture);
         } else {
-            itemStack = new ItemStack(material);
+            itemStack = new ItemStack(Material.valueOf(Chat.translateRaw(material, replacementSource)));
         }
 
         ItemMeta itemMeta = itemStack.getItemMeta();

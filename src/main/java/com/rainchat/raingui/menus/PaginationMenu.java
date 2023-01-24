@@ -107,7 +107,7 @@ public class PaginationMenu extends LiteMenu {
 
         int m = 0;
         for (; first < last; first++) {
-            ClickItem clickableItem = (clickableItemSize > first) ? this.paginationItems.get(first) : new ClickItem(new Item().material(Material.AIR), inventoryClickEvent -> {});
+            ClickItem clickableItem = (clickableItemSize > first) ? this.paginationItems.get(first) : new ClickItem(new Item().material(Material.AIR.toString()), inventoryClickEvent -> {});
             this.setItem(this.itemSlots.get(m), clickableItem);
             m++;
         }
