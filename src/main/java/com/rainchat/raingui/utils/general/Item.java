@@ -114,8 +114,8 @@ public class Item {
         ItemStack itemStack;
 
         if (material.startsWith("material:")) {
-            material.replace("material:","");
-        } else {
+            material = material.replace("material:","");
+        } else if (material.startsWith("base64:")) {
             skull_texture = material.replace("base64:","");
         }
 
