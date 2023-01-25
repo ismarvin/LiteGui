@@ -85,15 +85,15 @@ public class Item {
         return this;
     }
 
-    public static ItemStack skullTextured(String url) {
-        ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
-
-        String hashed = Base64.getEncoder().encodeToString(url.getBytes());
-
-        UUID hashAsId = new UUID(hashed.hashCode(), hashed.hashCode());
-        return Bukkit.getUnsafe().modifyItemStack(skull,
-                "{SkullOwner:{Id:\"" + hashAsId + "\",Properties:{textures:[{Value:\"" + hashed + "\"}]}}}"
+    public static ItemStack skullTextured(String base64) {
+        UUID id = UUID.nameUUIDFromBytes(base64.getBytes());
+        int less = (int) id.getLeastSignificantBits();
+        int most = (int) id.getMostSignificantBits();
+        return Bukkit.getUnsafe().modifyItemStack(
+                new ItemStack(Material.PLAYER_HEAD),
+                "{SkullOwner:{Id:[I;" + (less * most) + "," + (less >> 23) + "," + (most / less) + "," + (most * 8731) + "],Properties:{textures:[{Value:\"" + base64 + "\"}]}}}"
         );
+
     }
 
 
