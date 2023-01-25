@@ -113,7 +113,7 @@ public class Item {
         if (material == null) return null;
         ItemStack itemStack;
         String text = Chat.translateRaw(material, replacementSource);
-        System.out.println(material);
+
         if (text.startsWith("material:")) {
             text = text.replaceAll("material:","");
         } else if (text.startsWith("base64:")) {
