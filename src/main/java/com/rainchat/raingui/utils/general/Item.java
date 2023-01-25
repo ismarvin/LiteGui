@@ -113,10 +113,11 @@ public class Item {
         if (material == null) return null;
         ItemStack itemStack;
 
+        System.out.println(material);
         if (material.startsWith("material:")) {
-            material = material.replace("material:","");
+            material = material.replaceAll("material:","");
         } else if (material.startsWith("base64:")) {
-            skull_texture = material.replace("base64:","");
+            skull_texture = material.replaceAll("base64:","");
         }
 
 
