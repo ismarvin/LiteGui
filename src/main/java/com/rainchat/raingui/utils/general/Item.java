@@ -112,19 +112,19 @@ public class Item {
     public ItemStack build() {
         if (material == null) return null;
         ItemStack itemStack;
-
+        String text = Chat.translateRaw(material, replacementSource);
         System.out.println(material);
-        if (material.startsWith("material:")) {
-            material = material.replaceAll("material:","");
-        } else if (material.startsWith("base64:")) {
-            skull_texture = material.replaceAll("base64:","");
+        if (text.startsWith("material:")) {
+            text = text.replaceAll("material:","");
+        } else if (text.startsWith("base64:")) {
+            skull_texture = text.replaceAll("base64:","");
         }
 
 
         if (skull_texture != null) {
             itemStack = skullTextured(skull_texture);
         } else {
-            itemStack = new ItemStack(Material.valueOf(Chat.translateRaw(material, replacementSource).toUpperCase()));
+            itemStack = new ItemStack(Material.valueOf(text.toUpperCase()));
         }
 
         ItemMeta itemMeta = itemStack.getItemMeta();
